@@ -11,6 +11,12 @@ app.use(express.json()) // la app va a usar xpress.json que es un middleware par
 
 const PORT = 3000 // puerto en el que se levantará
 
+//Este codigo de debajo lo puso Guido para poder solucionar el cors o el cruze de puertos
+app.use((_, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.get('/ping', (_req, res) => { // creamos endpoint que llamaremos "Ping", tenemos req, res (request y response)
 // el guión bajo del _req es porque en el typescript tenemos "notUnusedParameters"
   console.log('Alguien ha pingued aqui el ' + new Date().toLocaleDateString())// para ver que alguien ha hecho "ping"
